@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "robotmodels"
+version = "0.1.0"
+description = "A collection of robot models"
+authors = ["Max Spahn <m.spahn@tudelft.nl>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+yourdfpy = "^0.0.56"
+pyglet = "<2"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^2.13.4"
+pytest = "^6.2.5"
+pytest-cov = "^4.0.0"
+black = "^23.9.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
