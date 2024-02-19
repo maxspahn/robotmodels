@@ -22,4 +22,18 @@
     <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
   </worldbody>
 
+  <actuator>
+    <velocity joint="joint1" ctrlrange="-2.0 2.0" kv='100' ctrllimited="true" />
+    <velocity joint="joint2" ctrlrange="-2.0 2.0" kv='100' ctrllimited="true" />
+    <velocity joint="joint3" ctrlrange="-2.0 2.0" kv='90' ctrllimited="true" />
+    <velocity joint="joint4" ctrlrange="-2.0 2.0" kv='80' ctrllimited="true" />
+    <velocity joint="joint5" ctrlrange="-2.0 2.0" kv='70' ctrllimited="true" />
+    <velocity joint="joint6" ctrlrange="-2.0 2.0" kv='50' ctrllimited="true" />
+    <velocity joint="joint7" ctrlrange="-2.0 2.0" kv='50' ctrllimited="true"/>
+  </actuator>
+
+  <keyframe>
+    <key name="home" qpos="0 0 0 -1.57079 0 1.57079 -0.7853 0.04 0.04" ctrl="0 0 0 -1.57079 0 1.57079 -0.7853"/>
+  </keyframe>
+
 </mujoco>

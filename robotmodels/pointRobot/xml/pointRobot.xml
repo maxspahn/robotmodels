@@ -1,0 +1,34 @@
+<mujoco model="pointRobot">
+  <compiler angle="radian"/>
+  <option gravity="0 0 0" integrator="implicitfast" timestep="0.01"/>
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3"
+      markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+  </asset>
+  <worldbody>
+    <body name="base_link_x" pos="0 0 0.06">
+      <inertial pos="0 0 0" mass="1" diaginertia="1 1 1"/>
+      <joint name="mobile_joint_x" pos="0 0 0" axis="1 0 0" type="slide" range="-5 5"/>
+      <body name="base_link_y">
+        <inertial pos="0 0 0" mass="1" diaginertia="1 1 1"/>
+        <joint name="mobile_joint_y" pos="0 0 0" axis="0 1 0" type="slide" range="-5 5"/>
+        <body name="base_link">
+          <inertial pos="0 0.000497512 0.0500025" quat="1 -5.07614e-05 0 0" mass="1" diaginertia="3.50995 3.5 3.00995"/>
+          <joint name="mobile_joint_theta" pos="0 0 0" axis="0 0 1" range="-5 5"/>
+          <geom size="0.2 0.05" type="cylinder" rgba="1 0 0 1"/>
+          <geom size="0.02 0.05" pos="0 0 0.1" type="cylinder"/>
+          <geom size="0.02 0.0005" pos="0 0.1 0.0505" rgba="0 0 1 1" type="cylinder"/>
+        </body>
+      </body>
+    </body>
+    <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>
+    <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
+  </worldbody>
+  <actuator>
+    <velocity joint="mobile_joint_x" ctrlrange="-2.0 2.0" kv='100' ctrllimited="true" />
+    <velocity joint="mobile_joint_y" ctrlrange="-2.0 2.0" kv='100' ctrllimited="true" />
+    <velocity joint="mobile_joint_theta" ctrlrange="-2.0 2.0" kv='100' ctrllimited="true" />
+  </actuator>
+</mujoco>

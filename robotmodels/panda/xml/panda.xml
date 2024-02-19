@@ -253,33 +253,4 @@
   <equality>
     <joint joint1="finger_joint1" joint2="finger_joint2" solimp="0.95 0.99 0.001" solref="0.005 1"/>
   </equality>
-
-  <!--actuator>
-    <general class="panda" name="actuator1" joint="joint1" gainprm="4500" biasprm="0 -4500 -450"/>
-    <general class="panda" name="actuator2" joint="joint2" gainprm="4500" biasprm="0 -4500 -450"
-      ctrlrange="-1.7628 1.7628"/>
-    <general class="panda" name="actuator3" joint="joint3" gainprm="3500" biasprm="0 -3500 -350"/>
-    <general class="panda" name="actuator4" joint="joint4" gainprm="3500" biasprm="0 -3500 -350"
-      ctrlrange="-3.0718 -0.0698"/>
-    <general class="panda" name="actuator5" joint="joint5" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12"/>
-    <general class="panda" name="actuator6" joint="joint6" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12"
-      ctrlrange="-0.0175 3.7525"/>
-    <general class="panda" name="actuator7" joint="joint7" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12"/>
-    <general class="panda" name="actuator8" tendon="split" forcerange="-100 100" ctrlrange="0 255"
-      gainprm="0.01568627451 0 0" biasprm="0 -100 -10"/>
-  </actuator-->
-  <actuator>
-    <velocity joint="joint1" ctrlrange="-2.0 2.0" kv='100' ctrllimited="true" />
-    <velocity joint="joint2" ctrlrange="-2.0 2.0" kv='100' ctrllimited="true" />
-    <velocity joint="joint3" ctrlrange="-2.0 2.0" kv='90' ctrllimited="true" />
-    <velocity joint="joint4" ctrlrange="-2.0 2.0" kv='80' ctrllimited="true" />
-    <velocity joint="joint5" ctrlrange="-2.0 2.0" kv='70' ctrllimited="true" />
-    <velocity joint="joint6" ctrlrange="-2.0 2.0" kv='50' ctrllimited="true" />
-    <velocity joint="joint7" ctrlrange="-2.0 2.0" kv='50' ctrllimited="true"/>
-    <velocity class="panda" name="actuator8" joint="finger_joint1" kv="10"/>
-  </actuator>
-
-  <keyframe>
-    <key name="home" qpos="0 0 0 -1.57079 0 1.57079 -0.7853 0.04 0.04" ctrl="0 0 0 -1.57079 0 1.57079 -0.7853 255"/>
-  </keyframe>
 </mujoco>
