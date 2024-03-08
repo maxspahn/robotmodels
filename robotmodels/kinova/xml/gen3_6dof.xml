@@ -98,12 +98,5 @@
     <velocity name="VA3" joint="3" kv="1"/>
     <velocity name="VA4" joint="4" kv="0.5"/>
     <velocity name="VA5" joint="5" kv="0.01"/>
-
-    <motor name="MA0" joint="0"/>
-    <motor name="MA1" joint="1"/>
-    <motor name="MA2" joint="2"/>
-    <motor name="MA3" joint="3"/>
-    <motor name="MA4" joint="4"/>
-    <motor name="MA5" joint="5"/>
   </actuator>
 </mujoco>
