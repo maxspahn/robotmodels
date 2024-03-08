@@ -12,7 +12,7 @@
     <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
     <texture name="body" type="cube" builtin="flat" mark="cross" width="127" height="1278" rgb1="0.9 0.9 0.9" rgb2="1 1 1" markrgb="0.8 0.8 0.8" random="0.01"/>
     <material name="body" texture="body" texuniform="true" rgba="0.8 0.8 0.8 1"/>
-    <mesh name="BASE" file="base_link.stl"/>
+    <mesh name="BASE" file="base_link.STL"/>
     <mesh name="SHOULDER" file="shoulder_link.STL"/>
     <mesh name="ARM" file="forearm_link.STL"/>
     <mesh name="FOREARM" file="forearm_link.STL"/>
