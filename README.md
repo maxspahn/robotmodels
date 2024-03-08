@@ -51,8 +51,8 @@ If you want to add new robotmodel, you should copy the template folder to a new
 folder with the name of the robotmodel. Then, you can change the urdf, xml and
 the meshes.
 
-> [!IMPORTANT]: the mesh locations in the urdf file must be adapted to the paths
-> where the meshes are stored. Mostly, ros-package syntax is not suppoorted.
+**Mesh locations in the urdf file must be adapted to the paths**
+**where the meshes are stored. Mostly, ros-package syntax is not suppoorted.**
 
 Ideally, you could also add the new class to the unittests in the `tests`
 folder.
