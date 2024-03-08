@@ -2,8 +2,8 @@ import os
 import numpy as np
 from robotmodels.utils.robotmodel import RobotModel
 
-ROBOT_NAMES_URDF = ['panda', 'ur5', 'albert', 'iris', 'prius', 'tiago', 'iiwa7', 'kinova']
-ROBOT_NAMES_XML = ['panda', 'kinova']
+ROBOT_NAMES_URDF = ['panda', 'ur5', 'albert', 'iris', 'prius', 'tiago', 'iiwa7', 'kinova_gen3lite']
+ROBOT_NAMES_XML = ['panda', 'kinova_gen3lite']
 
 def test_urdf_files():
     for robot_name in ROBOT_NAMES_URDF:
