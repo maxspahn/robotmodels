@@ -2,8 +2,8 @@ import sys
 from robotmodels.utils.robotmodel import RobotModel
 
 def main():
-    robot_name = 'kinova'
-    model_name = 'gen3lite'
+    robot_name = 'dingo_kinova'
+    model_name = 'dingo_kinova'
     if len(sys.argv) > 1:
         robot_name = sys.argv[1]
     if len(sys.argv) > 2:
