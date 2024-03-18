@@ -171,7 +171,7 @@
   </joint>
   <link name="chassis_link">
     <visual>
-      <origin rpy="1.570796 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <!-- <mesh filename="../meshes/base/omni_chassis.dae"/> -->
         <mesh filename="../meshes/base/omni_chassis_collision.stl"/>
