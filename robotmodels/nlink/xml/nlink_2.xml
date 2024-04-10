@@ -1,0 +1,22 @@
+<mujoco model="panda_description">
+  <compiler angle="radian" autolimits="true"/>
+  <worldbody>
+    <body name="panda_link1" pos="0 0 0.1">
+      <inertial pos="0 0 0.5" mass="1" diaginertia="0.0858 0.0858 0.005"/>
+      <joint name="panda_joint1" pos="0 0 0" axis="1 0 0" range="-2.8973 2.8973"/>
+      <geom size="0.1 0.5" pos="0 0 0.6" type="cylinder" contype="0" conaffinity="0" group="1" density="0"/>
+      <geom size="0.1 0.5" pos="0 0 0.6" type="cylinder"/>
+      <body name="panda_link2" pos="0 0 1.1">
+        <inertial pos="0 0 0.50007" mass="1.0001" diaginertia="0.0858997 0.0858997 0.00505"/>
+        <joint name="panda_joint2" pos="0 0 0" axis="0 1 0" range="-2.8973 2.8973"/>
+        <geom size="0.1 0.5" pos="0 0 0.6" type="cylinder" contype="0" conaffinity="0" group="1" density="0"/>
+        <geom size="0.1 0.5" pos="0 0 0.6" type="cylinder"/>
+        <geom size="0.1" pos="0 0 1.205" contype="0" conaffinity="0" group="1" density="0"/>
+        <geom size="0.01" pos="0 0 1.2"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <velocity joint="panda_joint1" ctrlrange="-2.0 2.0" kv='100' ctrllimited="true" />
+  </actuator>
+</mujoco>
