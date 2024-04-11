@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Union
 import os
 import shutil
 import sys
@@ -37,7 +37,7 @@ def homogeneous_transformation(rotation_matrix: ca.SX, translation: ca.SX) -> ca
     """
     Construct a homogeneous transformation matrix from rotation matrix and translation vector.
     """
-    T = ca.SX.zeros(4, 4)
+    T = ca.SX.eye(4)
     T[:3, :3] = rotation_matrix
     T[:3, 3] = translation
     return T
@@ -158,7 +158,7 @@ class RobotModel():
             print("Using center configuration instead.")
             return self.center_cfg()
 
-    def fk_casadi(self, q: ca.SX) -> ca.SX:
+    def fk_casadi(self, q: ca.SX, child_link: str, parent_link: Union[str, None] = None, link_transformation=np.eye(4), position_only=False) -> ca.SX:
         """
         Compute the forward kinematics of the robot.
         
@@ -169,9 +169,44 @@ class RobotModel():
             ca.SX: The homogeneous transformation matrix of the end-effector.
         """
         T = ca.SX.eye(4)
-        for i, joint in enumerate(self._joints):
-            T = ca.mtimes(T, joint.transformation_matrix(q[i]))
-        return T
+        joint_counter = 0
+        child_link_found = False
+        for element in self.root.iter():
+            if child_link_found:
+                return T
+            T_element = ca.SX.eye(4)
+            if element.tag == 'body':
+                pos = element.get('pos') if 'pos' in element.attrib else '0 0 0'
+                offset = ca.SX([float(i) for i in pos.split()])
+                T_element = homogeneous_transformation(ca.SX.eye(3), offset)
+                if element.get('name') == child_link:
+                    child_link_found = True
+            if element.tag == 'joint':
+                joint_type = 'hinge' if not 'type' in element.attrib else element.attrib['type']
+                joint_axis = [0, 0, 1] if not 'axis' in element.attrib else [int(x) for x in element.attrib['axis'].split()]
+                if joint_type == 'hinge':
+                    T_element = homogeneous_transformation(
+                        rotation_matrix(joint_axis, q[joint_counter]),
+                        ca.SX.zeros(3)
+                    )
+                elif joint_type == 'slide':
+                    T_element = homogeneous_transformation(
+                        ca.SX.eye(3),
+                        joint_axis * q[joint_counter]
+                    )
+                joint_counter += 1
+            if element.tag == 'geom':
+                if element.get('name') == child_link:
+                    pos = element.get('pos') if 'pos' in element.attrib else '0 0 0'
+                    offset = ca.SX([float(i) for i in pos.split()])
+                    T_element = homogeneous_transformation(ca.SX.eye(3), offset)
+                    child_link_found = True
+            T = ca.mtimes(T, T_element)
+        if not child_link_found:
+            raise ValueError(f"Child link {child_link} not found in XML.")
+        else:
+            return T
+
 
     def parse_xml(self):
         self._joints = []
@@ -179,47 +214,6 @@ class RobotModel():
         self.tree = ET.parse(self.get_xml_path())
         root = self.tree.getroot()
         self.root = root.find('.//worldbody')
-        self.parse_geom()
-        self.parse_joints()
-
-
-
-    def parse_geom(self):
-        geoms = self.root.findall('.//geom')
-        geom_data = {}
-        for i, geom in enumerate(geoms):
-            if not 'type' in geom.attrib:
-                continue
-            if 'name' in geom.attrib:
-                geom_id = geom.attrib['name']
-            else:
-                geom_id = 'geom_' + str(i)
-            geom_type = geom.attrib['type']
-            self._bodies.append(Body(geom_id, geom_type))
-
-    def parse_joints(self):
-        joints = self.root.findall('.//joint')
-        joint_data = {}
-        for i, joint in enumerate(joints):
-            if not 'type' in joint.attrib:
-                joint_type = 'hinge'
-            else:
-                joint_type = joint.attrib['type']
-
-            if not 'name' in joint.attrib:
-                joint_id = 'joint_' + str(i)
-            else:
-                joint_id = joint.attrib['name']
-            if not 'axis' in joint.attrib:
-                axis = [0, 0, 1]
-            else:
-                axis = [float(x) for x in joint.attrib['axis'].split()]
-            print(joint_type)
-            print(joint_id)
-            self._joints.append(Joint(joint_id, axis, joint_type_map_xml[joint_type]))
-        breakpoint()
-
-
 
 class LocalRobotModel(RobotModel):
     """LocalRobotModel uses the current working directory to search
