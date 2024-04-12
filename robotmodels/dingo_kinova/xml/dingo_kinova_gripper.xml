@@ -20,7 +20,7 @@
   </asset>
   <worldbody>
    <geom name="floor" size="0 0 .05" type="plane" material="grid" condim="3"/>
-    <light pos="0 0 5" dir="0 0 -1" diffuse="1 1 1"/>
+    <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>
     <body name="base_link_x" pos="0 0 0.03">
       <inertial pos="0 0 0" mass="1" diaginertia="1 1 1"/>
       <joint name="omni_joint_x" pos="0 0 0" axis="1 0 0" type="slide" limited="true" range="-10 10" damping="100"/>
@@ -116,9 +116,7 @@
     <velocity joint="arm_joint_4" ctrlrange="-2.0 2.0" kv='80' ctrllimited="true" />
     <velocity joint="arm_joint_5" ctrlrange="-2.0 2.0" kv='70' ctrllimited="true" />
     <velocity joint="arm_joint_6" ctrlrange="-2.0 2.0" kv='50' ctrllimited="true" />
-    <velocity joint="arm_right_finger_bottom_joint" ctrlrange="-2.0 2.0" kv='90' ctrllimited="true" />
-    <velocity joint="arm_right_finger_tip_joint" ctrlrange="-2.0 2.0" kv='80' ctrllimited="true" />
-    <velocity joint="arm_left_finger_bottom_joint" ctrlrange="-2.0 2.0" kv='70' ctrllimited="true" />
-    <velocity joint="arm_left_finger_tip_joint" ctrlrange="-2.0 2.0" kv='50' ctrllimited="true" />
+    <velocity joint="arm_right_finger_bottom_joint" ctrlrange="-2.0 2.0" kv='0.05' ctrllimited="true" />
+    <velocity joint="arm_left_finger_bottom_joint" ctrlrange="-2.0 2.0" kv='0.05' ctrllimited="true" />
   </actuator>
 </mujoco>
