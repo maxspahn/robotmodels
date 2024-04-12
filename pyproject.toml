@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "robotmodels"
-version = "0.1.3"
+version = "0.1.4"
 description = "A collection of robot models"
 authors = ["Max Spahn <m.spahn@tudelft.nl>"]
 
