@@ -1,6 +1,6 @@
 <mujoco model="pointRobot">
   <compiler angle="radian"/>
-  <option gravity="0 0 0" integrator="implicitfast" timestep="0.01"/>
+  <option gravity="0 0 -9.81" integrator="implicitfast" timestep="0.01"/>
   <asset>
     <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
     <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3"
