@@ -286,8 +286,4 @@
     <velocity class="panda" name="actuator8" joint="finger_joint1" kv="10"/>
   </actuator>
 
-  <keyframe>
-    <key name="home" qpos="0 0 0 -1.57079 0 1.57079 -0.7853 0.04 0.04" ctrl="0 0 0 -1.57079 0 1.57079 -0.7853 255"/>
-  </keyframe>
-
 </mujoco>

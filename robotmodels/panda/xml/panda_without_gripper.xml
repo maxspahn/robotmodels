@@ -227,8 +227,4 @@
     <velocity joint="joint7" ctrlrange="-2.0 2.0" kv='50' ctrllimited="true"/>
   </actuator>
 
-  <keyframe>
-    <key name="home" qpos="0 0 0 -1.57079 0 1.57079 -0.7853" ctrl="0 0 0 -1.57079 0 1.57079 -0.7853"/>
-  </keyframe>
-
 </mujoco>

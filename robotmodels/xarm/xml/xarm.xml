@@ -199,7 +199,4 @@
       biasprm="0 -100 -10"/-->
   </actuator>
 
-  <keyframe>
-    <key name="home" qpos="0 -.247 0 .909 0 1.15644 0 0 0 0 0 0 0" ctrl="0 -.247 0 .909 0 1.15644 0 0"/>
-  </keyframe>
 </mujoco>
