@@ -1,5 +1,7 @@
 import os
+
 import numpy as np
+
 from robotmodels.utils.robotmodel import RobotModel
 
 ROBOT_NAMES_URDF = [
@@ -14,7 +16,10 @@ ROBOT_NAMES_URDF = [
     ('kinova','gen3_6dof'),
     ('kinova','gen3_7dof'),
 ]
-ROBOT_NAMES_XML = ['panda', 'kinova']
+ROBOT_NAMES_XML = [
+    ('panda', 'panda'),
+    ('kinova', 'gen3lite'),
+]
 
 def test_urdf_files():
     for robot_name in ROBOT_NAMES_URDF:
@@ -28,7 +33,10 @@ def test_urdf_files():
 
 def test_xml_files():
     for robot_name in ROBOT_NAMES_XML:
-        robot_model = RobotModel(robot_name = robot_name)
+        if isinstance(robot_name, tuple):
+            robot_model = RobotModel(robot_name = robot_name[0], model_name = robot_name[1])
+        else:
+            robot_model = RobotModel(robot_name = robot_name)
         xml_file = robot_model.get_xml_path()
         assert isinstance(xml_file, str)
         assert os.path.exists(xml_file)
